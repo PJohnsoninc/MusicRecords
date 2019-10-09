@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.AlbumList;
+
 /**
  * Servlet implementation class viewAllAlbumsServlet
  */
@@ -29,13 +31,19 @@ public class viewAllAlbumsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		AlbumListHelper alh = new AlbumListHelper();		
-	    request.setAttribute("allAlbums", alh.showAllAlbums());		
+	    request.setAttribute("allAlbums", alh.showAllAlbums());	
+	    
 		if(alh.showAllAlbums().isEmpty()) {
-			request.setAttribute("allAlbums", " ");
+			request.setAttribute("allAlbums", "");
 			
+		}
+		/*the redirect instruction was nested inside of the if statement that would only run
+		if there was no items in the list.  But there was items in the list.  So it was never
+		redirecting to album-list.jsp with the allAlbums list.
+		*/
 		getServletContext().getRequestDispatcher("/album-list.jsp").forward(request, response);
 		
-		}
+		
 		
 	}
 
