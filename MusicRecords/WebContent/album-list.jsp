@@ -10,7 +10,8 @@
 <body>
 <form method = "post" action = "navigationServlet">
 <table>
-<c:forEach albums = "${requestScope.allAlbums} }" var = "currentalbum">
+<!-- The forEach loop had a different tag other than items in there. -->
+<c:forEach items="${requestScope.allAlbums}" var = "currentalbum">
 <tr>
   <td><input type = "radio" name = "id" value = "${currentalbum.id} "></td>
   <td>${currentalbum.artist}</td>
