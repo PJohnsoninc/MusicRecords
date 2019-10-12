@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +36,7 @@ public class addAlbumServlet extends HttpServlet {
 		String artist = request.getParameter("artist");
 		String title = request.getParameter("title");
 		String year = request.getParameter("year");
-		AlbumList al = new AlbumList(artist, title, year);
+		AlbumList al = new AlbumList(artist, title, year, LocalDate.now());
 		AlbumListHelper alh = new AlbumListHelper();
 		alh.insertAlbum(al);
 		

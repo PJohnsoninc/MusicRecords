@@ -25,8 +25,8 @@ public class Artists {
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
-	@OneToMany(mappedBy="artistObj",targetEntity=AlbumList.class, cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<AlbumList> artist;
+//	@OneToMany(mappedBy="artistObj",targetEntity=AlbumList.class, cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//	private List<AlbumList> artist;
 	
 	public Artists() {
 		

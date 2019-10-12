@@ -1,10 +1,16 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,19 +19,24 @@ public class Genres {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "GEN_ID")
 	private int id;
+	@Column(name = "ALBUM_ID")  
+	private int album_id;
 	@Column(name = "NAME")
 	private String name;
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
+//	@OneToMany(mappedBy="gener",targetEntity=AlbumList.class, cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//	@JoinColumn(name="ID",referencedColumnName="ID")
+//	private List<AlbumList> albums;
+	
 	public Genres() {
 		super();
 	}
-	public Genres(int id, String name, String description) {
+	public Genres(String name, String description) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 	}

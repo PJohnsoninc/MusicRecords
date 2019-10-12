@@ -30,7 +30,6 @@ public class AlbumListHelper {
 	}
 	
 	public void deleteAlbum(AlbumList toDelete) {
-		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<AlbumList>typedQuery = em.createQuery("select al from AlbumList al where al.artist = :selectedArtist and al.title = :selectedTitle and al.year = :selectedYear", AlbumList.class);
@@ -98,9 +97,6 @@ public class AlbumListHelper {
 		List<AlbumList>foundAlbums = typedQuery.getResultList();
 		em.close();
 		return foundAlbums;
-		
-		
-		
 		
 	}
 	
