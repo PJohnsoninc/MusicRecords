@@ -7,55 +7,55 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.Genres;
+import model.Artists;
 
-public class GenresHelper {
+public class ArtistHelper {
 
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("MusicRecords");
+static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("MusicRecords");
 	
-	public void insertGenre(Genres genre) {
+	public void insertArtist(Artists artist) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(genre);
+		em.persist(artist);
 		em.getTransaction().commit();
 		em.close();
 	}
 	
-	public List<Genres>showAllGenres() {
+	public List<Artists>showAllArtists() {
 		
 		EntityManager em = emfactory.createEntityManager();
-		List<Genres> allGenres = em.createQuery("SELECT i FROM Genres i").getResultList();
-		return allGenres;
+		List<Artists> allArtists = em.createQuery("SELECT a FROM Artists a").getResultList();
+		return allArtists;
 	}
 	
-	public void deleteGenre(Genres toDelete) {
+	public void deleteArtist(Artists toDelete) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Genres>typedQuery = em.createQuery("select gn from Genres gn where gn.name = :selectedName", Genres.class);
+		TypedQuery<Artists>typedQuery = em.createQuery("select a from Artists a where a.name = :selectedName", Artists.class);
 		
 		typedQuery.setParameter("selectedName", toDelete.getName());
 		
 		typedQuery.setMaxResults(1);
 		
-		Genres result = typedQuery.getSingleResult();
+		Artists result = typedQuery.getSingleResult();
 		
 		em.remove(result);
 		em.getTransaction().commit();
 		em.close();
 	}
 
-	public Genres searchForGenreById(int idToEdit) {
+	public Artists searchForArtistById(int idToEdit) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		Genres found = em.find(Genres.class, idToEdit);
+		Artists found = em.find(Artists.class, idToEdit);
 		em.close();
 		return found;		
 	}
 
-	public void updateGenre(Genres toEdit) {
+	public void updateArtist(Artists toEdit) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -65,18 +65,19 @@ public class GenresHelper {
 		em.close();		
 	}
 
-	public List<Genres> searchForGenreByName(String name) {
+	public List<Artists> searchForArtistByName(String name) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Genres>typedQuery = em.createQuery("select gn from Genres gn where gn.name = :selectedName", Genres.class);
+		TypedQuery<Artists>typedQuery = em.createQuery("select a from Artists a where gn.name = :selectedName", Artists.class);
 		typedQuery.setParameter("selectedName", name);
-		List<Genres>foundGenres = typedQuery.getResultList();
+		List<Artists>foundArtists = typedQuery.getResultList();
 		em.close();
-		return foundGenres;		
+		return foundArtists;		
 	}
 	
 	public void cleanUp() {
 		emfactory.close();
-	}	
+	}
+
 }

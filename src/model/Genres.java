@@ -19,10 +19,8 @@ public class Genres {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "GEN_ID")
+	@Column(name = "ID")
 	private int id;
-	@Column(name = "ALBUM_ID")  
-	private int album_id;
 	@Column(name = "NAME")
 	private String name;
 	@Column(name = "DESCRIPTION")

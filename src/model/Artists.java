@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "genres")
+@Table(name = "artists")
 public class Artists {
 
 	@Id
@@ -62,5 +62,10 @@ public class Artists {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Override
+	public String toString() {
+		return "Artists [artist_id=" + artist_id + ", name=" + name + ", description=" + description + "]";
 	}
 }

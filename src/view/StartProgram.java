@@ -1,15 +1,19 @@
 package view;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 import controller.AlbumListHelper;
+import controller.GenresHelper;
 import model.AlbumList;
+import model.Genres;
 
 public class StartProgram {
 
 		static Scanner in = new Scanner(System.in);
 		static AlbumListHelper alh = new AlbumListHelper();
+		static GenresHelper gh = new GenresHelper();
 
 		private static void addAlbum() {
 			
@@ -19,7 +23,7 @@ public class StartProgram {
 			String title = in.nextLine();
 			System.out.print("Enter year to add: ");
 			String year = in.nextLine();
-			AlbumList toAdd = new AlbumList(artist, title, year);
+			AlbumList toAdd = new AlbumList(artist, title, year, LocalDate.now());
 			alh.insertAlbum(toAdd);
 		}
 
@@ -62,7 +66,7 @@ public class StartProgram {
 			if (!foundAlbums.isEmpty()) {
 				System.out.println("Found Results.");
 				for (AlbumList l : foundAlbums) {
-					System.out.println(l.getId() + " : " + l.toString());
+					System.out.println(l.getId() + " : " + l.getArtist().toString() + " : " + l.getTitle().toString() + " : " + l.getYear().toString());
 				}
 				System.out.print("Which ID to edit: ");
 				int idToEdit = in.nextInt();
@@ -142,8 +146,6 @@ public class StartProgram {
 			for(AlbumList singleAlbum : allAlbums) {
 				System.out.println(singleAlbum.returnAlbumDetails());			
 			}
-			
-
 		}
 
 	}

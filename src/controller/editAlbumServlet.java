@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +52,7 @@ public class editAlbumServlet extends HttpServlet {
 		albumToUpdate.setArtist(artist);
 		albumToUpdate.setTitle(title);
 		albumToUpdate.setYear(year);
+		albumToUpdate.setDateCreated(LocalDate.now());
 		
 		alh.updateAlbum(albumToUpdate);
 		

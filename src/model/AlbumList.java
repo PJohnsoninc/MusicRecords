@@ -87,10 +87,17 @@ public class AlbumList {
 	public void setYear(String year) {
 		this.year = year;
 	}
+	
+	public LocalDate getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(LocalDate dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
 	public String returnAlbumDetails() {
 		return "artist[ " + artist + " ] title[ " + title + " , year[ " + year + " ] , Created[ " + dateCreated + " ]";
 	}
-	
-
 }
 
