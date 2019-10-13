@@ -49,10 +49,10 @@ public class editAlbumServlet extends HttpServlet {
 		Integer tempId = Integer.parseInt(request.getParameter("id"));
 		
 		AlbumList albumToUpdate = alh.searchForAlbumById(tempId);
-		albumToUpdate.setArtist(artist);
-		albumToUpdate.setTitle(title);
-		albumToUpdate.setYear(year);
-		albumToUpdate.setDateCreated(LocalDate.now());
+//		albumToUpdate.setArtist(artist);
+//		albumToUpdate.setTitle(title);
+//		albumToUpdate.setYear(year);
+//		albumToUpdate.setDateCreated(LocalDate.now());
 		
 		alh.updateAlbum(albumToUpdate);
 		

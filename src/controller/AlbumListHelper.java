@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.AlbumList;
+import model.Artists;
 
 public class AlbumListHelper {
 	
@@ -25,7 +26,11 @@ public class AlbumListHelper {
 	public List<AlbumList>showAllAlbums() {
 		
 		EntityManager em = emfactory.createEntityManager();
-		List<AlbumList> allAlbums = em.createQuery("SELECT i FROM AlbumList i").getResultList();
+//		List<AlbumList> allAlbums = em.createQuery("Select al from AlbumList al Join al.Artists a ").getResultList();
+//		List<Artists> allArtists = em.createQuery("SELECT i FROM Artists i").getResultList();
+		List<AlbumList> allAlbums = em.createQuery("SELECT al FROM AlbumList al").getResultList();
+		
+		
 		return allAlbums;
 	}
 	

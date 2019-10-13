@@ -7,7 +7,7 @@ import java.util.Scanner;
 import controller.AlbumListHelper;
 import controller.GenresHelper;
 import model.AlbumList;
-import model.Genres;
+import model.Artists;
 
 public class StartProgram {
 
@@ -16,13 +16,17 @@ public class StartProgram {
 		static GenresHelper gh = new GenresHelper();
 
 		private static void addAlbum() {
-			
+			//First create an Artist
 			System.out.print("Enter artist to add: ");
-			String artist = in.nextLine();
+			//Second create a Genre
+			String artistName = in.nextLine();
 			System.out.print("Enter title to add: ");
 			String title = in.nextLine();
 			System.out.print("Enter year to add: ");
 			String year = in.nextLine();
+			
+			Artists artist = new Artists(artistName, "None");
+			
 			AlbumList toAdd = new AlbumList(artist, title, year, LocalDate.now());
 			alh.insertAlbum(toAdd);
 		}
@@ -30,11 +34,12 @@ public class StartProgram {
 		private static void deleteAlbum() {
 		
 			System.out.print("Enter artist to delete: ");
-			String artist = in.nextLine();
+			String artistName = in.nextLine();
 			System.out.print("Enter title to delete: ");
 			String title = in.nextLine();
 			System.out.print("Enter year to delete: ");
 			String year = in.nextLine();
+			Artists artist = new Artists(artistName, "None");
 			AlbumList toDelete = new AlbumList(artist, title, year);
 			alh.deleteAlbum(toDelete);
 		}
@@ -66,7 +71,7 @@ public class StartProgram {
 			if (!foundAlbums.isEmpty()) {
 				System.out.println("Found Results.");
 				for (AlbumList l : foundAlbums) {
-					System.out.println(l.getId() + " : " + l.getArtist().toString() + " : " + l.getTitle().toString() + " : " + l.getYear().toString());
+//					System.out.println(l.getId() + " : " + l.getArtist().toString() + " : " + l.getTitle().toString() + " : " + l.getYear().toString());
 				}
 				System.out.print("Which ID to edit: ");
 				int idToEdit = in.nextInt();
@@ -82,7 +87,7 @@ public class StartProgram {
 				if (update == 1) {
 					System.out.print("New Artist: ");
 					String newArtist = in.nextLine();
-					toEdit.setArtist(newArtist);
+//					toEdit.setArtist(newArtist);
 				} else if (update == 2) {
 					System.out.print("New Title: ");
 					String newTitle = in.nextLine();
@@ -144,7 +149,7 @@ public class StartProgram {
 			
 			List<AlbumList>allAlbums = alh.showAllAlbums();
 			for(AlbumList singleAlbum : allAlbums) {
-				System.out.println(singleAlbum.returnAlbumDetails());			
+				System.out.println(singleAlbum.toString());			
 			}
 		}
 

@@ -11,6 +11,7 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mrecords"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.password" value="jimenezf"/>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 		</properties>
 	</persistence-unit>
 </persistence>
