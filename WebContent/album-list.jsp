@@ -38,17 +38,24 @@
 			<tr>
 				<th></th>
 				<th>Artist</th>
+				<th>Artist_Description</th>
 				<th>Title</th>
+				<th>Genre</th>
 				<th>Year</th>
-				<th>Date modified</th>
+				<th>Genre_Description</th>
+				<th>Date_Modified</th>
 				</tr>
 			<c:forEach items="${requestScope.allAlbums}" var = "currentalbum">
 				<tr>
-					<td><input type = "radio" name = "id" value = "${currentalbum.id}"></td>
-					<td>${currentalbum.artist}</td>
+					<td><input type = "radio" name = "id" value = "${currentalbum.album_id}"></td>
+					<td>${currentalbum.artist.name}</td>
+					<td>${currentalbum.artist.description}</td>
 					<td>${currentalbum.title}</td>
+					<td>${currentalbum.genres.name}</td>
+					<td>${currentalbum.genres.description}</td>
 					<td>${currentalbum.year}</td>
-				    <td>${currentalbum.dateCreated}</td>
+				    <td>${currentalbum.createdOn}</td>
+				    
 				</tr>
 			</c:forEach>
 		</table>

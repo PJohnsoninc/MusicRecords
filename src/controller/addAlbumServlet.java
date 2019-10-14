@@ -32,13 +32,14 @@ public class addAlbumServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String artist = request.getParameter("artist");
+		
+//		String artist = request.getParameter("artist");
 		String title = request.getParameter("title");
 		String year = request.getParameter("year");
-//		AlbumList al = new AlbumList(artist, title, year, LocalDate.now());
-//		AlbumListHelper alh = new AlbumListHelper();
-//		alh.insertAlbum(al);
+		
+		AlbumList al = new AlbumList(title, year);
+		AlbumListHelper alh = new AlbumListHelper();
+		alh.insertAlbum(al);
 //		
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}

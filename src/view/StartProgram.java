@@ -8,6 +8,7 @@ import controller.AlbumListHelper;
 import controller.GenresHelper;
 import model.AlbumList;
 import model.Artists;
+import model.Genres;
 
 public class StartProgram {
 
@@ -16,32 +17,38 @@ public class StartProgram {
 		static GenresHelper gh = new GenresHelper();
 
 		private static void addAlbum() {
-			//First create an Artist
+			//create an Artist
 			System.out.print("Enter artist to add: ");
-			//Second create a Genre
 			String artistName = in.nextLine();
-			System.out.print("Enter title to add: ");
+			System.out.print("Enter description to add to artist: ");
+			String artistDescription = in.nextLine();
+			//create Genre
+			System.out.print("Enter genre to add: ");
+			String genreName = in.nextLine();
+			System.out.print("Enter description to add to genre: ");
+			String genreDescription = in.nextLine();
+			//create Album
+			System.out.print("Enter title to add to album: ");
 			String title = in.nextLine();
-			System.out.print("Enter year to add: ");
+			System.out.print("Enter year to add to album: ");
 			String year = in.nextLine();
 			
-			Artists artist = new Artists(artistName, "None");
+			Artists artist = new Artists(artistName, artistDescription);
+			Genres genre = new Genres(genreName, genreDescription);	
+			AlbumList toAdd = new AlbumList(artist, genre, title, year, LocalDate.now());
 			
-			AlbumList toAdd = new AlbumList(artist, title, year, LocalDate.now());
 			alh.insertAlbum(toAdd);
 		}
 
 		private static void deleteAlbum() {
 		
-			System.out.print("Enter artist to delete: ");
-			String artistName = in.nextLine();
-			System.out.print("Enter title to delete: ");
+			System.out.print("Enter album title to delete: ");
 			String title = in.nextLine();
 			System.out.print("Enter year to delete: ");
 			String year = in.nextLine();
-			Artists artist = new Artists(artistName, "None");
-			AlbumList toDelete = new AlbumList(artist, title, year);
-			alh.deleteAlbum(toDelete);
+			
+//			AlbumList toDelete = new AlbumList(title, year);
+//			alh.deleteAlbum(toDelete);
 		}
 
 		private static void editAlbum() {
@@ -106,9 +113,7 @@ public class StartProgram {
 		}
 
 		public static void main(String[] args) {
-			// TODO Auto-generated method stub
 			runMenu();
-
 		}
 
 		public static void runMenu() {

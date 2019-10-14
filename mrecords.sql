@@ -23,13 +23,18 @@ DROP TABLE IF EXISTS `albums`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `albums` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ARTIST` varchar(45) NOT NULL,
-  `TITLE` varchar(45) NOT NULL,
-  `YEAR` varchar(4) NOT NULL,
-  `DATE_CREATED` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `album_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `artist_id` int(11) DEFAULT NULL,
+  `genres_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`album_id`),
+  KEY `artist_id_idx` (`artist_id`),
+  KEY `genres_id_idx` (`genres_id`),
+  CONSTRAINT `artist_id` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`),
+  CONSTRAINT `genres_id` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`genres_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +43,7 @@ CREATE TABLE `albums` (
 
 LOCK TABLES `albums` WRITE;
 /*!40000 ALTER TABLE `albums` DISABLE KEYS */;
-INSERT INTO `albums` VALUES (1,'U2','The Joshua Tree','1987','2019-10-13 00:00:00'),(2,'Eagles','The Long Run','1979',NULL),(3,'Prince and the Revolution','Purple Rain','1984',NULL),(4,'Maggie Rogers','Heard It in a Past Life','2019',NULL),(5,'Foo Fighters','Concrete and Gold','2017',NULL),(6,'Radiohead','OK Computer','1997',NULL),(7,'The Beatles','Let It Be','1970',NULL),(8,'U2','Boy','1983',NULL);
+INSERT INTO `albums` VALUES (1,'The Joshua Tree','1987','2019-10-13 00:00:00',NULL,NULL),(2,'The Long Run','1979',NULL,NULL,NULL),(3,'Purple Rain','1984',NULL,NULL,NULL),(4,'Heard It in a Past Life','2019',NULL,NULL,NULL),(5,'Concrete and Gold','2017',NULL,NULL,NULL),(6,'OK Computer','1997',NULL,NULL,NULL),(7,'Let It Be','1970',NULL,NULL,NULL),(8,'Boy','1983',NULL,NULL,NULL),(11,'Xo','2016','2019-10-14 00:00:00',2,7);
 /*!40000 ALTER TABLE `albums` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,11 +55,11 @@ DROP TABLE IF EXISTS `artists`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `artists` (
-  `ARTIST_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(45) DEFAULT NULL,
-  `DESCRIPTION` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ARTIST_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `artist_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`artist_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +68,7 @@ CREATE TABLE `artists` (
 
 LOCK TABLES `artists` WRITE;
 /*!40000 ALTER TABLE `artists` DISABLE KEYS */;
-INSERT INTO `artists` VALUES (1,'Beyonce','none');
+INSERT INTO `artists` VALUES (1,'Beyonce','none'),(2,'Beyonce','None');
 /*!40000 ALTER TABLE `artists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,11 +80,11 @@ DROP TABLE IF EXISTS `genres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genres` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(45) DEFAULT NULL,
-  `DESCRIPTION` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `genres_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`genres_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +93,7 @@ CREATE TABLE `genres` (
 
 LOCK TABLES `genres` WRITE;
 /*!40000 ALTER TABLE `genres` DISABLE KEYS */;
-INSERT INTO `genres` VALUES (4,'Rock','none'),(6,'Beyonce','none');
+INSERT INTO `genres` VALUES (4,'Rock','none'),(6,'Beyonce','none'),(7,'Pop','None');
 /*!40000 ALTER TABLE `genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-13  5:10:34
+-- Dump completed on 2019-10-14  8:29:45

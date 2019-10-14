@@ -24,12 +24,8 @@ public class AlbumListHelper {
 	}
 	
 	public List<AlbumList>showAllAlbums() {
-		
 		EntityManager em = emfactory.createEntityManager();
-//		List<AlbumList> allAlbums = em.createQuery("Select al from AlbumList al Join al.Artists a ").getResultList();
-//		List<Artists> allArtists = em.createQuery("SELECT i FROM Artists i").getResultList();
 		List<AlbumList> allAlbums = em.createQuery("SELECT al FROM AlbumList al").getResultList();
-		
 		
 		return allAlbums;
 	}
@@ -37,9 +33,8 @@ public class AlbumListHelper {
 	public void deleteAlbum(AlbumList toDelete) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<AlbumList>typedQuery = em.createQuery("select al from AlbumList al where al.artist = :selectedArtist and al.title = :selectedTitle and al.year = :selectedYear", AlbumList.class);
+		TypedQuery<AlbumList>typedQuery = em.createQuery("select al from AlbumList al where al.title = :selectedTitle and al.year = :selectedYear", AlbumList.class);
 		
-		typedQuery.setParameter("selectedArtist", toDelete.getArtist());
 		typedQuery.setParameter("selectedTitle", toDelete.getTitle());
 		typedQuery.setParameter("selectedYear", toDelete.getYear());
 		
