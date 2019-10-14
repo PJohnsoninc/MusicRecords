@@ -7,43 +7,16 @@
 <meta charset="ISO-8859-1">
 <title>Edit Album</title>
 </head>
-<style>
-	input[type=text], select {
-	  width: 100%;
-	  padding: 12px 20px;
-	  margin: 8px 0;
-	  display: inline-block;
-	  border: 1px solid #ccc;
-	  border-radius: 4px;
-	  box-sizing: border-box;
-	}
-	
-	input[type=submit] {
-	  width: 100%;
-	  background-color: #3399ff;
-	  color: white;
-	  padding: 14px 20px;
-	  margin: 8px 0;
-	  border-radius: 4px;
-	}
-	
-	a{
-		font-size: 20px;
-	}
-	
-	.box{
-		margin: auto;
-		width: 50%;
-		padding: 10px;
-		text-align: center;
-	}
-</style>
+<link href="forms.css" rel="stylesheet" type="text/css">
 <body>
 	<form action = "editAlbumServlet" method = "post">
-		Artist: <input type = "text" name = "artist" value = "${albumToEdit.artist}">
+		Artist: <input type = "text" name = "artist_name" value = "${albumToEdit.artist.name}">
+		Artist_Description: <input type = "text" name= "artist_description" value = "${albumToEdit.artist.description}">
 		Title: <input type = "text" name = "title" value = "${albumToEdit.title}">
+		Genre: <input type = "text" name = "genre_name" value = "${albumToEdit.genres.name}">
+		Genre_Description: <input type = "text" name = "genre_description" value = "${albumToEdit.genres.description}">
 		Year: <input type = "text" name = "year" value = "${albumToEdit.year}">
-		<input type = "hidden" name = "id" value = "${albumToEdit.id}">
+		<input type = "hidden" name = "id" value = "${albumToEdit.album_id}">
 		<input type = "submit" value = "Save Edited Album">
 	</form>
 </body>

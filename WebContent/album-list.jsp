@@ -6,31 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Album list</title>
-<style>
-	table, th, td {
-	  border: 1px solid black;
-	  margin: auto;
-		width: 45%;
-		padding: 10px;
-		text-align: center;
-	}
-	
-	input[type=submit] {
-	  width: 20%;
-	  background-color: #3399ff;
-	  color: white;
-	  padding: 14px 20px;
-	  margin: 8px 0;
-	  border-radius: 4px;
-	}
-	
-	.box{
-		margin: auto;
-		width: 50%;
-		padding: 10px;
-		text-align: center;
-	}
-</style>
+<link href="tables.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<form method="post" action="navigationServlet">
@@ -41,8 +17,8 @@
 				<th>Artist_Description</th>
 				<th>Title</th>
 				<th>Genre</th>
-				<th>Year</th>
 				<th>Genre_Description</th>
+				<th>Year</th>
 				<th>Date_Modified</th>
 				</tr>
 			<c:forEach items="${requestScope.allAlbums}" var = "currentalbum">

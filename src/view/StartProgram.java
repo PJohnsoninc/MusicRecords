@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import controller.AlbumListHelper;
-import controller.GenresHelper;
 import model.AlbumList;
 import model.Artists;
 import model.Genres;
@@ -14,7 +13,6 @@ public class StartProgram {
 
 		static Scanner in = new Scanner(System.in);
 		static AlbumListHelper alh = new AlbumListHelper();
-		static GenresHelper gh = new GenresHelper();
 
 		private static void addAlbum() {
 			//create an Artist
@@ -46,9 +44,6 @@ public class StartProgram {
 			String title = in.nextLine();
 			System.out.print("Enter year to delete: ");
 			String year = in.nextLine();
-			
-//			AlbumList toDelete = new AlbumList(title, year);
-//			alh.deleteAlbum(toDelete);
 		}
 
 		private static void editAlbum() {

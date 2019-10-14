@@ -56,6 +56,14 @@ public class AlbumList {
 		this.year = year;
 	}
 	
+	public AlbumList(Artists artist, Genres genre, String title, String year) {
+		super();
+		this.artist = artist;
+		this.genres = genre;
+		this.title = title;
+		this.year = year;
+	}
+	
 	public AlbumList(Artists artist, Genres genre, String title, String year, LocalDate createdOn) {
 		super();
 		this.artist = artist;

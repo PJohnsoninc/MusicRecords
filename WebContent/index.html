@@ -2,15 +2,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link href="forms.css" rel="stylesheet" type="text/css">
+<title>Add Music record</title>
 </head>
 <body>
-<form action = "addAlbumServlet" method = "post">
-Artist: <input type = "text" name = "artist">
-Title: <input type = "text" name = "title">
-Year: <input type = "text" name = "year">
-<input type = "submit" value = "Add Album">
-</form> <br />
+	<form action = "addAlbumServlet" method = "post">
+		Artist: <input type = "text" name = "artist">
+		Artist_Description: <input type = "text" name = "artist_description">
+		Title: <input type = "text" name = "title">
+		Genre: <input type = "text" name = "genre">
+		Genre_Description: <input type = "text" name = "genre_description">
+		Year: <input type = "text" name = "year">
+		<input type = "submit" value = "Add Album">
+	</form> <br />
 <a href = "viewAllAlbumsServlet">View the complete list</a>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class navigationServlet extends HttpServlet {
 		} 
 		else if (act.equals("delete")) {
 			try {
-			     Integer tempId = Integer.parseInt(request.getParameter("id"));
+			 Long tempId = Long.parseLong(request.getParameter("id"));
 			     AlbumList albumToDelete = alh.searchForAlbumById(tempId);
 			     alh.deleteAlbum(albumToDelete);
 			
@@ -50,7 +50,7 @@ public class navigationServlet extends HttpServlet {
 		} 
 		else if (act.equals("edit")) {
 			try {
-			     Integer tempId = Integer.parseInt(request.getParameter("id"));
+			     Long tempId = Long.parseLong(request.getParameter("id"));
 			     AlbumList albumToEdit = alh.searchForAlbumById(tempId);
 			     request.setAttribute("albumToEdit",  albumToEdit);
 			     getServletContext().getRequestDispatcher("/edit-album.jsp").forward(request, response);

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.AlbumList;
+import model.Artists;
+import model.Genres;
 
 /**
  * Servlet implementation class addAlbumServlet
@@ -33,14 +35,19 @@ public class addAlbumServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		String artist = request.getParameter("artist");
+		String artistName = request.getParameter("artist");
+		String artistDescription = request.getParameter("artist_description");
 		String title = request.getParameter("title");
+		String genreName = request.getParameter("genre");
+		String genre_description = request.getParameter("genre_description");
 		String year = request.getParameter("year");
 		
-		AlbumList al = new AlbumList(title, year);
+		Artists artist = new Artists(artistName, artistDescription);
+		Genres genre = new Genres(genreName, genre_description);
+		AlbumList al = new AlbumList(artist, genre, title, year, LocalDate.now());
 		AlbumListHelper alh = new AlbumListHelper();
 		alh.insertAlbum(al);
-//		
+		
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}
 
