@@ -1,10 +1,13 @@
 package view;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 import controller.AlbumListHelper;
 import model.AlbumList;
+import model.Artists;
+import model.Genres;
 
 public class StartProgram {
 
@@ -12,27 +15,35 @@ public class StartProgram {
 		static AlbumListHelper alh = new AlbumListHelper();
 
 		private static void addAlbum() {
-			
+			//create an Artist
 			System.out.print("Enter artist to add: ");
-			String artist = in.nextLine();
-			System.out.print("Enter title to add: ");
+			String artistName = in.nextLine();
+			System.out.print("Enter description to add to artist: ");
+			String artistDescription = in.nextLine();
+			//create Genre
+			System.out.print("Enter genre to add: ");
+			String genreName = in.nextLine();
+			System.out.print("Enter description to add to genre: ");
+			String genreDescription = in.nextLine();
+			//create Album
+			System.out.print("Enter title to add to album: ");
 			String title = in.nextLine();
-			System.out.print("Enter year to add: ");
+			System.out.print("Enter year to add to album: ");
 			String year = in.nextLine();
-			AlbumList toAdd = new AlbumList(artist, title, year);
+			
+			Artists artist = new Artists(artistName, artistDescription);
+			Genres genre = new Genres(genreName, genreDescription);	
+			AlbumList toAdd = new AlbumList(artist, genre, title, year, LocalDate.now());
+			
 			alh.insertAlbum(toAdd);
 		}
 
 		private static void deleteAlbum() {
 		
-			System.out.print("Enter artist to delete: ");
-			String artist = in.nextLine();
-			System.out.print("Enter title to delete: ");
+			System.out.print("Enter album title to delete: ");
 			String title = in.nextLine();
 			System.out.print("Enter year to delete: ");
 			String year = in.nextLine();
-			AlbumList toDelete = new AlbumList(artist, title, year);
-			alh.deleteAlbum(toDelete);
 		}
 
 		private static void editAlbum() {
@@ -62,7 +73,7 @@ public class StartProgram {
 			if (!foundAlbums.isEmpty()) {
 				System.out.println("Found Results.");
 				for (AlbumList l : foundAlbums) {
-					System.out.println(l.getId() + " : " + l.toString());
+//					System.out.println(l.getId() + " : " + l.getArtist().toString() + " : " + l.getTitle().toString() + " : " + l.getYear().toString());
 				}
 				System.out.print("Which ID to edit: ");
 				int idToEdit = in.nextInt();
@@ -78,7 +89,7 @@ public class StartProgram {
 				if (update == 1) {
 					System.out.print("New Artist: ");
 					String newArtist = in.nextLine();
-					toEdit.setArtist(newArtist);
+//					toEdit.setArtist(newArtist);
 				} else if (update == 2) {
 					System.out.print("New Title: ");
 					String newTitle = in.nextLine();
@@ -97,9 +108,7 @@ public class StartProgram {
 		}
 
 		public static void main(String[] args) {
-			// TODO Auto-generated method stub
 			runMenu();
-
 		}
 
 		public static void runMenu() {
@@ -140,10 +149,8 @@ public class StartProgram {
 			
 			List<AlbumList>allAlbums = alh.showAllAlbums();
 			for(AlbumList singleAlbum : allAlbums) {
-				System.out.println(singleAlbum.returnAlbumDetails());			
+				System.out.println(singleAlbum.toString());			
 			}
-			
-
 		}
 
 	}

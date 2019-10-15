@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.AlbumList;
+import model.Artists;
+import model.Genres;
 
 /**
  * Servlet implementation class editAlbumServlet
@@ -36,22 +40,29 @@ public class editAlbumServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		
+	
 		AlbumListHelper alh = new AlbumListHelper();
 		
-		String artist = request.getParameter("artist");
+		String artistName = request.getParameter("artist_name");
+		String artistDescription = request.getParameter("artist_description");
 		String title = request.getParameter("title");
+		String genreName = request.getParameter("genre_name");
+		String genreDescription = request.getParameter("genre_description");
 		String year = request.getParameter("year");
-		Integer tempId = Integer.parseInt(request.getParameter("id"));
+		Long tempId = Long.parseLong(request.getParameter("id"));
+		Artists artist = new Artists(artistName, artistDescription);
+		Genres genre = new Genres(genreName,genreDescription);
 		
-		AlbumList albumToUpdate = alh.searchForAlbumById(tempId);
-		albumToUpdate.setArtist(artist);
-		albumToUpdate.setTitle(title);
-		albumToUpdate.setYear(year);
+		AlbumList albumToEdit = alh.searchForAlbumById(tempId);
 		
-		alh.updateAlbum(albumToUpdate);
+		request.setAttribute("albumToEdit", albumToEdit);
+		
+		albumToEdit.setArtist(artist);
+		albumToEdit.setGenres(genre);
+		albumToEdit.setTitle(title);
+		albumToEdit.setTitle(year);
+		
+		alh.updateAlbum(albumToEdit);
 		
 		getServletContext().getRequestDispatcher("/viewAllAlbumsServlet").forward(request, response);
 	}

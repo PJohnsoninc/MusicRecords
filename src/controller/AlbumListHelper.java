@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.AlbumList;
+import model.Artists;
 
 public class AlbumListHelper {
 	
@@ -23,23 +24,19 @@ public class AlbumListHelper {
 	}
 	
 	public List<AlbumList>showAllAlbums() {
-		
 		EntityManager em = emfactory.createEntityManager();
-		List<AlbumList> allAlbums = em.createQuery("SELECT i FROM AlbumList i").getResultList();
+		List<AlbumList> allAlbums = em.createQuery("SELECT al FROM AlbumList al").getResultList();
+		
 		return allAlbums;
 	}
 	
 	public void deleteAlbum(AlbumList toDelete) {
-		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<AlbumList>typedQuery = em.createQuery("select al from AlbumList al where al.artist = :selectedArtist and al.title = :selectedTitle and al.year = :selectedYear", AlbumList.class);
 		
-		typedQuery.setParameter("selectedArtist", toDelete.getArtist());
-		typedQuery.setParameter("selectedTitle", toDelete.getTitle());
-		typedQuery.setParameter("selectedYear", toDelete.getYear());
+		TypedQuery<AlbumList>typedQuery = em.createQuery("select al from AlbumList al where al.album_id = :selectedId", AlbumList.class);
 		
-		typedQuery.setMaxResults(1);
+		typedQuery.setParameter("selectedId", toDelete.getAlbum_id());
 		
 		AlbumList result = typedQuery.getSingleResult();
 		
@@ -48,7 +45,7 @@ public class AlbumListHelper {
 		em.close();
 	}
 
-	public AlbumList searchForAlbumById(int idToEdit) {
+	public AlbumList searchForAlbumById(long idToEdit) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -99,14 +96,10 @@ public class AlbumListHelper {
 		em.close();
 		return foundAlbums;
 		
-		
-		
-		
 	}
 	
 	public void cleanUp() {
 		emfactory.close();
 	}	
-
 }
 
